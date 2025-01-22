@@ -180,7 +180,41 @@ text-align: end;
     margin: auto auto;
     list-style: none;
 } 
-  
+// dialogo
+    .dialogos{
+    width: auto;
+    color: #000000;
+    text-align: start;
+    box-shadow: 10px 10px 25px rgb(255, 255, 255);      
+    text-shadow: 2px 5px 8px gainsboro;
+    font-size: 10px;
+    display: flex;
+    padding: 10px 20px; /* Add padding here */
+    letter-spacing: auto;
+    line-break: strict;
+    line-height: 15px;
+    overflow-wrap: break-word;
+    tab-size: 4;
+text-indent: auto;
+font-weight: bold;
+margin: 20px;
+}
+.person{
+    padding: 10px;
+margin: 10px;
+}
+ .person:nth-of-type(2n+2){
+    color: #3ed143;
+    text-shadow: 2px 5px 8px gainsboro;
+content: "👉";
+}
+.person:nth-of-type(2n+1){
+    color: #cad4ca;
+    text-shadow: 2px 5px 8px rgb(56, 220, 56)
+    
+}
+
+    
     @media(max-width: 1000px) {}
     @media(max-width: 769px) {}
         @media (min-width:321px) and (max-width: 480px) {
@@ -255,7 +289,12 @@ if(pregunta.trim() === "") {
                             //  que debemos do  1 or 0                                         eroni ^c^                                                        __
                             let checkClick=checkComplete(alertas) //un var here perform "one" reoni  ejm:es viceral representar <= or ^c^ but C<=estas \_\
                               //nomina nodejs  //ver clases nomina con el profe alura oni volas scii kiel faras [posicion]
-           checkClick.classList.add("fixe")         
+           checkClick.classList.add("fixe")        
+
+                            let dialogosComunes=convertation(alertas)
+                            dialogosComunes.classList.add("catalog-part")
+                            dialogosComunes.innerText="Common Situations"
+                                           
 vocabulario.forEach(element => {
                   const li = document.createElement("li");
               //  let actions=document.getElementsByClassName(element)
@@ -267,6 +306,8 @@ vocabulario.forEach(element => {
                   divUl.appendChild(li);
                     //use us button to make follow toward "ver movimiento boton en blogger "
     divUl.appendChild(checkClick); 
+    divUl.appendChild(dialogosComunes);
+
                   vocabularioLista.push(element)                 //  lista creada desde el input
            
 return vocabulario
@@ -340,7 +381,47 @@ return preguntaCompleta;
 
 
 // funcion tarjeta de actividad
+const convertation=(dialogoObj)=>{
 
+  let parrafoConversacion = document.createElement("button");
+  parrafoConversacion.addEventListener("click", () => {
+  dialogoSentencias(dialogoObj);
+});
+  
+      return parrafoConversacion
+}
+
+function dialogoSentencias(dialogoObj) {
+  
+  let parrafoConversacion = document.createElement("p");
+
+  parrafoConversacion.classList.add("dialogos");
+  let html = "";
+
+  for (let i = 0; i < vocabularioLista.length; i++) {
+ 
+      html += `<p> <span class="person">Person A: </span>  "Hey, what are your plans for the weekend?" <br>
+      <span class="person">Person B: </span> "I'm thinking of doing a bit of everything! I ${vocabularioLista[i++]}
+              to ${vocabularioLista[i++]} , so I might ${vocabularioLista[i++]}  up to the coast and 
+              ${vocabularioLista[i++]} some friends. I also need to  ${vocabularioLista[i++]} 
+              for that big exam next week, so I'll try to squeeze in some ${vocabularioLista[i++]}
+              time. And of course, I need to ${vocabularioLista[i++]} ,${vocabularioLista[i++]} ,
+              and maybe even ${vocabularioLista[i++]}  some video games to relax."
+              <br> <span class="person">Person A: </span> "Sounds like a fun and productive weekend! I'm planning on
+              ${vocabularioLista[i++]}  on a few projects I've been putting off. I also need to 
+              ${vocabularioLista[i++]}  some groceries and maybe ${vocabularioLista[i++]} 
+              my grandparents. I'm hoping to get some good sleep too, I've been feeling a bit tired lately."
+              <br> <span class="person">Person B: </span> "That sounds good too.<br> Maybe we can grab coffee sometime next week and compare notes on how our weekends went."
+              <br><span class="person">Person A: </span> "Definitely! I'd ${vocabularioLista[i++]}  to." 
+              <br><br>This dialogue uses the vocabulary provided in a natural and engaging way,<br> incorporating them into a casual conversation about <br>weekend plans.
+              </p>
+              `
+     
+    }
+    parrafoConversacion.innerHTML = html;
+    dialogoObj.appendChild(parrafoConversacion);
+  return dialogoObj;
+}
 plantilla(); 
 </script>
 
